@@ -1,0 +1,25 @@
+<mat-drawer-container class="dashboard-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <button mat-icon-button class="example-icon" (click)="navigateToCursos()">
+    <mat-icon>library_books</mat-icon>
+    Cursos
+    </button>
+    <br>
+    <br>
+    <button mat-icon-button class="example-icon" (click)="navigateToSeguridad()">
+    <mat-icon>security</mat-icon>
+    Seguridad
+    </button>
+  </mat-drawer>
+  <div class="example-sidenav-content">
+    <mat-toolbar color="primary">
+    <span>Gestion de Cursos</span>
+    <button mat-icon-button class="example-icon" (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+    </button>
+  </mat-toolbar>
+  <div class="p-3">
+    <app-alumnos></app-alumnos>
+  </div>
+ </div>
+</mat-drawer-container>
