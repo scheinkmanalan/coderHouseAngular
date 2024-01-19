@@ -1,7 +1,7 @@
 <h1 align="center">Hi 👋, I'm Alan Scheinkman</h1>
 <h3 align="center">Consultant | Software Architect & Developer | .Net | +20 years experience | Passionate about technology and teamwork</h3>
 
-- 🔭 I’m currently working on project [CoderHouse](https://github.com/scheinkmanalan/CoderHouseJavascript) you can check the progress on https://scheinkmanalan.github.io/CoderHouseJavascript/
+- 🔭 I’m currently working on project [CoderHouse](https://github.com/scheinkmanalan/coderHouseAngular) you can check the progress on https://scheinkmanalan.github.io/coderHouseAngular/
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
