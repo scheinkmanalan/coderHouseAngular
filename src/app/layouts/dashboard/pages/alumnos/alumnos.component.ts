@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Alumno } from './models';
+import { Alumno } from './models/interfaces';
+
 @Component({
   selector: 'app-alumnos',
   templateUrl: './alumnos.component.html',

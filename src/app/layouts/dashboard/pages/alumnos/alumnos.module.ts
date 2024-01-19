@@ -12,17 +12,18 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
-  declarations: [AlumnosComponent, AlumnoFormComponent],
-  imports: [
-    CommonModule,
-    MatTableModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-  ],
-  exports: [AlumnosComponent],
+    declarations: [AlumnosComponent, AlumnoFormComponent],
+    exports: [AlumnosComponent],
+    imports: [
+        CommonModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+    ]
 })
 export class AlumnosModule {}

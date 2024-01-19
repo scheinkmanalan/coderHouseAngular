@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-export interface UserPipe {
+export interface PersonaPipe {
   firstName: string;
   lastName: string;
 }
@@ -10,7 +10,7 @@ export interface UserPipe {
 })
 export class FullNamePipe implements PipeTransform {
   transform(
-    value: UserPipe,
+    value: PersonaPipe,
     mode?: 'uppercase' | 'lowercase',
     ...args: unknown[]
   ): unknown {

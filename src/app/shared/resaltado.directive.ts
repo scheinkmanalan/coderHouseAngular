@@ -6,7 +6,7 @@ import {
   Renderer2,
   SimpleChanges,
 } from '@angular/core';
-import { UserPipe } from './full-name.pipe';
+import { FullNamePipe } from './full-name.pipe';
 
 @Directive({
   selector: '[appResaltado]',
@@ -16,7 +16,7 @@ export class ResaltadoDirective implements OnChanges {
   color = 'yellow';
 
   @Input()
-  user: UserPipe | null = null;
+  FullName: FullNamePipe | null = null;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     console.log('Se instancio la directiva appResaltado', this.elementRef);

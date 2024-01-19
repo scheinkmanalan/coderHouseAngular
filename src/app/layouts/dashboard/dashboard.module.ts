@@ -5,9 +5,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { AlumnosModule } from './pages/users/alumnos.module';
+import { AlumnosModule } from './pages/alumnos/alumnos.module';
 import { CategoriesModule } from './pages/categories/categories.module';
-import { PipesModule } from './pages/pipes/pipes.module';
+
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -19,7 +19,6 @@ import { PipesModule } from './pages/pipes/pipes.module';
     MatIconModule,
     AlumnosModule,
     CategoriesModule,
-    PipesModule,
   ],
   exports: [DashboardComponent],
 })

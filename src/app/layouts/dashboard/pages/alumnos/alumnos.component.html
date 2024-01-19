@@ -19,9 +19,7 @@
     <!-- HEADER -->
     <th mat-header-cell *matHeaderCellDef>Nombre completo</th>
     <!-- CELDA -->
-    <td mat-cell *matCellDef="let alumno">
-      {{ alumno.firstName + " " + alumno.lastName }}
-    </td>
+    <td mat-cell *matCellDef="let alumno">{{ alumno.firstName }}</td>
   </ng-container>
 
   <!-- email Column -->
