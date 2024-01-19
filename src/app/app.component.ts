@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = '50260-pf-baez';
+  title = 'Gestion de Cursos';
 }
