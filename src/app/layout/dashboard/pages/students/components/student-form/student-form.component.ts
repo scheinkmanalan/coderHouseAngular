@@ -34,9 +34,9 @@ export class StudentFormComponent implements OnChanges {
     if (!this.studentForm.valid) {
       this.studentForm.markAllAsTouched();
     } else if (!this.studentForm.value.id) {
-      this.studentsDb.addStudent(this.studentForm.value)
+      this.studentsDb.add(this.studentForm.value)
     } else {
-      this.studentsDb.updateStudent(this.studentForm.value)
+      this.studentsDb.update(this.studentForm.value)
     }
     this.studentListChange.emit();
     this.studentForm.reset();

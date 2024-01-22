@@ -20,7 +20,7 @@ export interface Student {
 export class StudentsComponent {
 
   displayedColumns: string[] = ['id', 'name', 'lastname', 'email', 'password', 'role', 'delete', 'edit'];
-  dataSource = this.studentsDb.getAllStudents();
+  dataSource = this.studentsDb.getAll();
   passEdit: Student | null = null
    
   constructor(private studentsDb: StudentMockupService) { }
@@ -30,7 +30,7 @@ export class StudentsComponent {
   }
 
   onStudentDelete(id: number): void {
-    this.studentsDb.deleteStudent(id);
+    this.studentsDb.delete(id);
     this.updateList()
   }
 
@@ -40,7 +40,7 @@ export class StudentsComponent {
 
   updateList() {
     console.log("UPDATELIST")
-    this.dataSource = [...this.studentsDb.getAllStudents()]
+    this.dataSource = [...this.studentsDb.getAll()]
     
   }
 }
