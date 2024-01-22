@@ -1,27 +1,25 @@
 import { Pipe, PipeTransform } from '@angular/core';
-
-export interface PersonaPipe {
-  firstName: string;
-  lastName: string;
-}
+import { Student } from '../layout/dashboard/pages/students/students.component';
 
 @Pipe({
   name: 'fullName',
 })
 export class FullNamePipe implements PipeTransform {
   transform(
-    value: PersonaPipe,
+    value: Student,
     mode?: 'uppercase' | 'lowercase',
     ...args: unknown[]
   ): unknown {
 
-    console.log(args);
-    const result = value.lastName + ' ' + value.firstName;
+    const result = value.lastname + ' ' + value.name;
 
-    if (mode === 'uppercase') {
-      return result.toUpperCase();
+    switch (mode) {
+      case 'lowercase':
+        return result.toLowerCase();
+      case 'uppercase':
+        return result.toUpperCase();
+      default:
+        return result;
     }
-
-    return result;
   }
 }

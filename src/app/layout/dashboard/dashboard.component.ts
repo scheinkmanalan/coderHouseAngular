@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router'; // Importar Router
+import { Router } from '@angular/router'; 
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-dash',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
+  styleUrl: './dashboard.component.scss',
 })
-export class DashboardComponent {
+
+export class DashComponent {
   showFiller = false;
 
   constructor(private router: Router) {} // Inyectar Router
