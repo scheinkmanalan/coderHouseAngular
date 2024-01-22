@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { StudentMockupService } from '../../../../core/services/student-mockup.service';
 import { FullNamePipe } from '../../../../shared/full-name.pipe';
-
+import { MyTitleSizeDirective } from '../../../../shared/my-title-size.directive';
 export interface Student {
   id: number;
   name: string;
