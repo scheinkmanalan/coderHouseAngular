@@ -23,7 +23,7 @@ export class StudentFormComponent implements OnChanges {
       id: this.fb.control(null),
       name: this.fb.control("", Validators.required),
       lastname: this.fb.control("", Validators.required),
-      email: this.fb.control("", Validators.required),
+      email: this.fb.control("", [Validators.required, Validators.email]),
       password: this.fb.control("", Validators.required),
       role: this.fb.control("", Validators.required)
     })
