@@ -10,8 +10,8 @@ export class StudentMockupService {
 
   studentList: Student[] = [
     {id: Date.now() + Math.floor(Math.random()*100), name: "Roberto", lastname: "abondanzieri", email: "angangan@gmail.com", password: "oledb", role: "ADMIN"},
-    {id: Date.now() + Math.floor(Math.random()*100), name: "Pablo", lastname: "Frehley", email: "jofrey@gmail.com", password: "pimparabinpinpin", role: "USER"},
-    
+    {id: Date.now() + Math.floor(Math.random()*100), name: "Juan", lastname: "Suarez", email: "jofrey@gmail.com", password: "pimparabinpinpin", role: "USER"},
+    {id: Date.now() + Math.floor(Math.random()*100), name: "Albert", lastname: "Einstein", email: "albert@gmail.com", password: "pimparabinpinpin", role: "USER"},    
   ]
   constructor() { }
 
