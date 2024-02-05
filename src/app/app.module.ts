@@ -6,18 +6,21 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashModule } from './layout/dashboard/dashboard.module';
 import { FullNamePipe } from './shared/full-name.pipe';
+import { HttpClientModule } from '@angular/common/http';
+import { CourseMockupService } from './core/services/course-mockup.service';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     DashModule
   ],
-  providers: [],
+  providers: [CourseMockupService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
