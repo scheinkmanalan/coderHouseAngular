@@ -1,21 +1,17 @@
 <mat-drawer-container class="dashboard-container">
   <mat-drawer #drawer class="example-sidenav" mode="side">
-    <button mat-icon-button class="example-icon" (click)="navigateToCursos()">
+    <div class="menu-item" (click)="navigateToCursos()">
       <mat-icon>book</mat-icon>
-      Cursos
-    </button>
-    <br>
-    <br>
-    <button mat-icon-button class="example-icon" (click)="navigateToStudents()">
+      <span>Cursos</span>
+    </div>
+    <div class="menu-item" (click)="navigateToStudents()">
       <mat-icon>person</mat-icon>
-      Estudiantes
-    </button>
-    <button mat-icon-button class="example-icon" (click)="navigateToLessons()">
+      <span>Estudiantes</span>
+    </div>
+    <div class="menu-item" (click)="navigateToLessons()">
       <mat-icon>school</mat-icon>
-      Clases
-    </button>
-    <br>
-    <br>
+      <span>Clases</span>
+    </div>
   </mat-drawer>
   <div class="example-sidenav-content">
     <mat-toolbar color="primary">
