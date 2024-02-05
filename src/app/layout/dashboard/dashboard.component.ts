@@ -19,4 +19,9 @@ export class DashComponent {
   navigateToStudents() {
     this.router.navigate(['/students']);
   }
+
+  navigateToLessons() {
+    this.router.navigate(['/lessons']);
+  }
+  
 }

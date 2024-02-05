@@ -10,6 +10,9 @@ import { CoursesModule } from './pages/courses/courses.module';
 import { RouterModule } from '@angular/router';
 import { CoursesComponent } from './pages/courses/courses.component';
 
+import { LessonsComponent } from './pages/lessons/lessons.component';
+import { LessonsModule } from './pages/lessons/lessons.module';
+
 @NgModule({
   declarations: [
     DashComponent
@@ -22,6 +25,7 @@ import { CoursesComponent } from './pages/courses/courses.component';
     MatToolbarModule,
     StudentsModule,
     CoursesModule,
+    LessonsModule,
     RouterModule.forChild([
       {
         // /dashboard/home
@@ -40,6 +44,14 @@ import { CoursesComponent } from './pages/courses/courses.component';
         loadChildren: () =>
           import('./pages/courses/courses.module').then(
             (m) => m.CoursesModule
+          ),
+      },
+      {
+        // /dashboard/lessons
+        path: 'lessons',
+        loadChildren: () =>
+          import('./pages/lessons/lessons.module').then(
+            (m) => m.LessonsModule
           ),
       },
     ]),

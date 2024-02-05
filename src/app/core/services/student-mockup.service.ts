@@ -13,6 +13,7 @@ export class StudentMockupService {
     {id: Date.now() + Math.floor(Math.random()*100), name: "Juan", lastname: "Suarez", email: "jofrey@gmail.com", password: "pimparabinpinpin", role: "USER"},
     {id: Date.now() + Math.floor(Math.random()*100), name: "Albert", lastname: "Einstein", email: "albert@gmail.com", password: "pimparabinpinpin", role: "USER"},    
   ]
+  
   constructor() { }
 
   add(student:Student): Student[] {
