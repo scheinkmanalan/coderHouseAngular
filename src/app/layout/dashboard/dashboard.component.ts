@@ -13,10 +13,10 @@ export class DashComponent {
   constructor(private router: Router) {} // Inyectar Router
 
   navigateToCursos() {
-    this.router.navigate(['/cursos']);
+    this.router.navigate(['/courses']);
   }
 
-  navigateToSeguridad() {
-    this.router.navigate(['/seguridad']);
+  navigateToStudents() {
+    this.router.navigate(['/students']);
   }
 }
