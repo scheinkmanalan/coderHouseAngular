@@ -1,7 +1,5 @@
-// course-mockup.service.ts
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 
 export interface Course {
@@ -15,63 +13,39 @@ export interface Course {
   providedIn: 'root'
 })
 export class CourseMockupService {
-  private apiUrl = 'http://localhost:4200/courses';
-  courseList: Course[] = [];
+  private courseList: Course[] = [];
+  private coursesSubject = new Subject<Course[]>();
 
-  constructor(private http: HttpClient) { }
+  // Observable que los componentes pueden suscribirse para recibir actualizaciones
+  courses$: Observable<Course[]> = this.coursesSubject.asObservable();
+
+  constructor() { }
 
   getAll(): Observable<Course[]> {
-    return this.http.get<Course[]>(this.apiUrl)
-      .pipe(
-        tap(courses => this.courseList = courses),
-        catchError(error => {
-          console.error('Error fetching courses:', error);
-          return of([]);
-        })
-      );
+    // Emite la lista actual de cursos
+    this.coursesSubject.next(this.courseList);
+    return of(this.courseList);
   }
-  
 
   add(course: Course): Observable<Course[]> {
-    return this.http.post<Course>(this.apiUrl, course)
-      .pipe(
-        switchMap((newCourse: Course) => {
-          this.courseList.push(newCourse);
-          return of([...this.courseList]); // Devolvemos una nueva instancia de la lista
-        }),
-        catchError(error => {
-          console.error('Error adding course:', error);
-          return of(this.courseList);
-        })
-      );
+    course.id = Date.now() + Math.floor(Math.random() * 100);
+    this.courseList.push(course);
+    this.coursesSubject.next(this.courseList); // Notifica cambios a los suscriptores
+    return of([...this.courseList]);
   }
-  
-
 
   delete(id: number): Observable<Course[]> {
-    const url = `${this.apiUrl}/${id}`;
-    return this.http.delete<void>(url)
-      .pipe(
-        switchMap(() => {
-          this.courseList = this.courseList.filter(course => course.id !== id);
-          return of(this.courseList);
-        }),
-        catchError(error => {
-          console.error('Error deleting course:', error);
-          return of(this.courseList);
-        })
-      );
+    this.courseList = this.courseList.filter(course => course.id !== id);
+    this.coursesSubject.next(this.courseList); // Notifica cambios a los suscriptores
+    return of([...this.courseList]);
   }
 
-
   update(course: Course): Observable<void> {
-    const url = `${this.apiUrl}/${course.id}`;
-    return this.http.put<void>(url, course)
-      .pipe(
-        catchError(error => {
-          console.error('Error updating course:', error);
-          return of();
-        })
-      );
+    const index = this.courseList.findIndex(c => c.id === course.id);
+    if (index !== -1) {
+      this.courseList[index] = course;
+      this.coursesSubject.next(this.courseList); // Notifica cambios a los suscriptores
+    }
+    return of();
   }
 }
