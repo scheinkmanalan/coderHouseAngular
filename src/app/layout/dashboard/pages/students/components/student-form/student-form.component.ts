@@ -27,7 +27,6 @@ export class StudentFormComponent implements OnChanges {
       password: this.fb.control("", Validators.required),
       role: this.fb.control("", Validators.required)
     })
-    console.log("Se instancio student-form")
   }
 
   onSubmit(): void {

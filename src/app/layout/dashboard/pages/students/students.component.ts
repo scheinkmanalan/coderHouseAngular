@@ -39,7 +39,6 @@ export class StudentsComponent {
   }
 
   updateList() {
-    console.log("UPDATELIST")
     this.dataSource = [...this.studentsDb.getAll()]
     
   }

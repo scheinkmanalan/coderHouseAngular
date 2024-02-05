@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { StudentsModule } from './pages/students/students.module';
+import { CoursesModule } from './pages/courses/courses.module';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { StudentsModule } from './pages/students/students.module';
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
-    StudentsModule
+    StudentsModule,
+    CoursesModule
   ],
   exports:[DashComponent]
 })

@@ -1,0 +1,18 @@
+<form [formGroup]="courseForm" (ngSubmit)="onSubmit()" class="main-form" action="">
+  <mat-form-field ngClass="invisible">
+    <input formControlName="id" matInput type="text" />
+  </mat-form-field>  
+  <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input formControlName="name" matInput type="text" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Descripcion</mat-label>
+      <input formControlName="description" matInput type="text" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Fecha</mat-label>
+      <input formControlName="date" matInput type="date" />
+    </mat-form-field>   
+    <button mat-button color="primary" width="100px" height="40px">Guardar</button>
+  </form>
