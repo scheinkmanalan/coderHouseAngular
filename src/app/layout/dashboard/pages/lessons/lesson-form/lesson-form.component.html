@@ -14,6 +14,14 @@
         <mat-label>Fecha</mat-label>
         <input formControlName="date" matInput type="date" />
       </mat-form-field>   
+      
+      <mat-form-field>
+        <mat-label>Curso</mat-label>
+        <mat-select formControlName="courseId">
+          <mat-option *ngFor="let course of courses" [value]="course.id">{{ course.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
       <button mat-button color="primary" width="100px" height="40px">Guardar</button>
     </form>
   

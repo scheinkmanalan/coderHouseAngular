@@ -7,6 +7,7 @@ export interface Lesson {
   name: string;
   description: string;
   date: Date;
+  courseId: number;
 }
 
 @Component({
@@ -23,8 +24,8 @@ export class LessonsComponent implements OnInit {
   constructor(private lessonService: LessonMockupService) {
 
     const initialLessons: Lesson[] = [
-      { id: 1, name: 'Clase Inicial 1', description: 'Descripción de la primera clase', date: new Date() },
-      { id: 2, name: 'Clase Inicial 2', description: 'Descripción de la segunda clase', date: new Date() }
+      { id: 1, name: 'Clase Inicial 1', description: 'Descripción de la primera clase', date: new Date(), courseId: 1 },
+      { id: 2, name: 'Clase Inicial 2', description: 'Descripción de la segunda clase', date: new Date(), courseId: 2 }
     ];
 
     this.dataSource = new MatTableDataSource<Lesson>(initialLessons);

@@ -13,16 +13,18 @@ export interface Course {
   providedIn: 'root'
 })
 export class CourseMockupService {
-  private courseList: Course[] = [];
+  private courseList: Course[] = [
+    { id: 1, name: 'Curso Inicial 1', description: 'Descripción del Curso 1', date: new Date() },
+    { id: 2, name: 'Curso Inicial 2', description: 'Descripción del Curso 2', date: new Date() }
+  ];
+
   private coursesSubject = new Subject<Course[]>();
 
-  // Observable que los componentes pueden suscribirse para recibir actualizaciones
   courses$: Observable<Course[]> = this.coursesSubject.asObservable();
 
   constructor() { }
 
   getAll(): Observable<Course[]> {
-    // Emite la lista actual de cursos
     this.coursesSubject.next(this.courseList);
     return of(this.courseList);
   }
@@ -30,13 +32,13 @@ export class CourseMockupService {
   add(course: Course): Observable<Course[]> {
     course.id = Date.now() + Math.floor(Math.random() * 100);
     this.courseList.push(course);
-    this.coursesSubject.next(this.courseList); // Notifica cambios a los suscriptores
+    this.coursesSubject.next(this.courseList); 
     return of([...this.courseList]);
   }
 
   delete(id: number): Observable<Course[]> {
     this.courseList = this.courseList.filter(course => course.id !== id);
-    this.coursesSubject.next(this.courseList); // Notifica cambios a los suscriptores
+    this.coursesSubject.next(this.courseList); 
     return of([...this.courseList]);
   }
 
@@ -44,7 +46,7 @@ export class CourseMockupService {
     const index = this.courseList.findIndex(c => c.id === course.id);
     if (index !== -1) {
       this.courseList[index] = course;
-      this.coursesSubject.next(this.courseList); // Notifica cambios a los suscriptores
+      this.coursesSubject.next(this.courseList); 
     }
     return of();
   }
