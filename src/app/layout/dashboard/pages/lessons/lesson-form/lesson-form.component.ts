@@ -19,7 +19,7 @@ export class LessonFormComponent implements OnChanges, OnInit {
   constructor(
     private fb: FormBuilder,
     private lessonsDb: LessonMockupService,
-    private courseService: CourseMockupService  // Asegúrate de importar el servicio correcto
+    private courseService: CourseMockupService 
   ) {
     this.lessonForm = this.fb.group({
       id: this.fb.control(null),
