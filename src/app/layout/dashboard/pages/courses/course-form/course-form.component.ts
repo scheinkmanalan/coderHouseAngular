@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CourseMockupService } from '../../../../../core/services/course-mockup.service';
+import { CourseService } from '../../../../../core/services/course-mockup.service';
 
 @Component({
   selector: 'app-course-form',
@@ -17,7 +17,7 @@ export class CourseFormComponent implements OnChanges {
   @Input()
   courseToEdit: any;
 
-  constructor(private fb: FormBuilder, private coursesDb: CourseMockupService) {
+  constructor(private fb: FormBuilder, private coursesDb: CourseService) {
     this.courseForm = this.fb.group({
       id: this.fb.control(null),
       name: this.fb.control("", Validators.required),

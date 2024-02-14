@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, Subject } from 'rxjs';
-import { catchError, switchMap, tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 export interface Course {
   id: number;
@@ -12,42 +12,26 @@ export interface Course {
 @Injectable({
   providedIn: 'root'
 })
-export class CourseMockupService {
-  private courseList: Course[] = [
-    { id: 1, name: 'Curso Inicial 1', description: 'Descripción del Curso 1', date: new Date() },
-    { id: 2, name: 'Curso Inicial 2', description: 'Descripción del Curso 2', date: new Date() }
-  ];
+export class CourseService {
+  private apiUrl = 'http://localhost:3000/courses'; 
 
-  private coursesSubject = new Subject<Course[]>();
-
-  courses$: Observable<Course[]> = this.coursesSubject.asObservable();
-
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getAll(): Observable<Course[]> {
-    this.coursesSubject.next(this.courseList);
-    return of(this.courseList);
+    return this.http.get<Course[]>(this.apiUrl);
   }
 
-  add(course: Course): Observable<Course[]> {
-    course.id = Date.now() + Math.floor(Math.random() * 100);
-    this.courseList.push(course);
-    this.coursesSubject.next(this.courseList); 
-    return of([...this.courseList]);
+  add(course: Course): Observable<Course> {
+    return this.http.post<Course>(this.apiUrl, course);
   }
 
-  delete(id: number): Observable<Course[]> {
-    this.courseList = this.courseList.filter(course => course.id !== id);
-    this.coursesSubject.next(this.courseList); 
-    return of([...this.courseList]);
+  delete(id: number): Observable<void> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete<void>(url);
   }
 
   update(course: Course): Observable<void> {
-    const index = this.courseList.findIndex(c => c.id === course.id);
-    if (index !== -1) {
-      this.courseList[index] = course;
-      this.coursesSubject.next(this.courseList); 
-    }
-    return of();
+    const url = `${this.apiUrl}/${course.id}`;
+    return this.http.put<void>(url, course);
   }
 }

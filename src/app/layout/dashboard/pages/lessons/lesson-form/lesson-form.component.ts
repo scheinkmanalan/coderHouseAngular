@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Course, CourseMockupService } from '../../../../../core/services/course-mockup.service';  
+import { Course, CourseService } from '../../../../../core/services/course-mockup.service';  
 import { Lesson, LessonMockupService } from '../../../../../core/services/lesson-mockup.service'; 
 
 @Component({
@@ -19,7 +19,7 @@ export class LessonFormComponent implements OnChanges, OnInit {
   constructor(
     private fb: FormBuilder,
     private lessonsDb: LessonMockupService,
-    private courseService: CourseMockupService 
+    private courseService: CourseService 
   ) {
     this.lessonForm = this.fb.group({
       id: this.fb.control(null),
