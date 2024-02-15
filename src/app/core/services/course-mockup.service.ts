@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid'; // Importa la función v4 de uuid
+
 
 export interface Course {
   id: number;
@@ -13,25 +15,48 @@ export interface Course {
   providedIn: 'root'
 })
 export class CourseService {
-  private apiUrl = 'http://localhost:3000/courses'; // Cambiar la URL según la configuración de tu servidor
+  private apiUrl = 'http://localhost:3000/courses';
 
-  constructor(private http: HttpClient) {}
+  private courses$: BehaviorSubject<Course[]>;
+
+  constructor(private httpClient: HttpClient) {
+    this.courses$ = new BehaviorSubject<Course[]>([]);
+    this.updateAndEmitBehavior()
+  }
+
+  get coursesObs$() {
+    return this.courses$.asObservable();
+  }
+
+  private updateAndEmitBehavior() {
+    this.httpClient.get<Course[]>(this.apiUrl).subscribe({ next: (data) => { this.courses$.next(data) } })
+  }
 
   getAll(): Observable<Course[]> {
-    return this.http.get<Course[]>(this.apiUrl);
+    return this.httpClient.get<Course[]>(this.apiUrl)
   }
 
-  add(course: Course): Observable<Course> {
-    return this.http.post<Course>(this.apiUrl, course);
+  add(course: Course) {
+    const id: number = parseInt(uuidv4(), 16);
+    course.id = id;
+    return this.httpClient.post(this.apiUrl, course).subscribe({ next: () => this.updateAndEmitBehavior() });
   }
+
+
+  // update(course: Course): Observable<Course> {
+  //   const url = `${this.apiUrl}/${course.id}`;
+  //   return this.httpClient.put<Course>(url, course);
+  // }
 
   update(course: Course): Observable<Course> {
     const url = `${this.apiUrl}/${course.id}`;
-    return this.http.put<Course>(url, course);
+    return this.httpClient.put<Course>(url, course).pipe(
+      tap(() => this.updateAndEmitBehavior())
+    );
   }
 
   delete(id: number): Observable<void> {
     const url = `${this.apiUrl}/${id}`;
-    return this.http.delete<void>(url);
+    return this.httpClient.delete<void>(url);
   }
 }

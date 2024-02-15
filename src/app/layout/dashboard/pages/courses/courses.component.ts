@@ -28,13 +28,7 @@ export class CoursesComponent implements OnInit {
   }
 
   addCourse(course: Course) {
-    this.courseService.add(course).subscribe(
-      newCourse => {
-        this.dataSource.data.push(newCourse);
-        this.dataSource._updateChangeSubscription();
-      },
-      error => console.error('Error adding course:', error)
-    );
+    this.courseService.add(course);
   }
 
   updateCourse(course: Course) {
