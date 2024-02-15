@@ -23,11 +23,11 @@ export class AuthService {
                 let studentFind = students.find(student => student.email == loginData.email && student.password == loginData.password)
                 if (studentFind) {
                     this.studentLoggedIn = studentFind
-                    localStorage.setItem("userToken", "acaestariael token")
+                    localStorage.setItem("userToken", "user token")
                     this.router.navigate(["courses"])
                 }
                 else {
-                    this.error = "Not student found"
+                    this.error = "No se encontro el usuario"
                     this.router.navigate(["login"])
                     console.log(this.error)
                 }
