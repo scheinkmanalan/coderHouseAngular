@@ -29,31 +29,42 @@ export class CoursesComponent implements OnInit {
 
   addCourse(course: Course) {
     this.courseService.add(course).subscribe(
-      () => {
-        this.getCourses(); // Recargar la lista después de agregar el curso
+      newCourse => {
+        this.dataSource.data.push(newCourse);
+        this.dataSource._updateChangeSubscription();
       },
       error => console.error('Error adding course:', error)
     );
   }
 
-  onListChange(): void {
-    this.updateList();
+  updateCourse(course: Course) {
+    this.courseService.update(course).subscribe(
+      updatedCourse => {
+        const index = this.dataSource.data.findIndex(c => c.id === updatedCourse.id);
+        if (index !== -1) {
+          this.dataSource.data[index] = updatedCourse;
+          this.dataSource._updateChangeSubscription();
+        }
+      },
+      error => console.error('Error updating course:', error)
+    );
   }
 
-  onCourseDelete(id: number): void {
+  deleteCourse(id: number) {
     this.courseService.delete(id).subscribe(
       () => {
-        this.getCourses(); // Recargar la lista después de eliminar el curso
+        this.dataSource.data = this.dataSource.data.filter(c => c.id !== id);
+        this.dataSource._updateChangeSubscription();
       },
       error => console.error('Error deleting course:', error)
     );
   }
 
-  onPressCourseEdit(course: Course): void {
-    this.passEdit = course;
+  onListChange(): void {
+    // No necesitamos hacer nada aquí porque el MatTableDataSource se actualiza automáticamente
   }
 
-  updateList(): void {
-    this.getCourses();
+  onPressCourseEdit(course: Course): void {
+    this.passEdit = course;
   }
 }

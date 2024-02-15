@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Student } from '../../layout/dashboard/pages/students/students.component';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,25 @@ export class StudentMockupService {
     {id: Date.now() + Math.floor(Math.random()*100), name: "Albert", lastname: "Einstein", email: "albert@gmail.com", password: "pimparabinpinpin", role: "USER"},    
   ]
   
-  constructor() { }
+  private apiUrl = 'http://localhost:3000/students';
+  
+  private students$: BehaviorSubject<Student[]>
+
+  constructor(private httpClient: HttpClient) {
+    this.students$ = new BehaviorSubject<Student[]>([])
+    this.updateAndEmitBehavior();
+  }
+  private updateAndEmitBehavior() {
+    this.httpClient.get<Student[]>(this.apiUrl).subscribe({
+      next: (data) => {
+        this.students$.next(data)
+      }
+    })
+  }
+
+  get studentsObs() {
+    return this.students$.asObservable();
+  }
 
   add(student:Student): Student[] {
     let id = Date.now() + Math.floor(Math.random()*100);
@@ -35,5 +55,9 @@ export class StudentMockupService {
 
   getAll() {
     return this.studentList
+  }
+
+  getAllStudents() {
+    return this.httpClient.get<Student[]>(this.apiUrl)
   }
 }

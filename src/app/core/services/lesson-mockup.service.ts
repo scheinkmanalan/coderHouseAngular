@@ -7,7 +7,7 @@ export interface Lesson {
   name: string;
   description: string;
   date: Date;
-  courseId: number;  // Agregamos el campo courseId
+  courseId: number;  
 }
 
 @Injectable({
@@ -28,7 +28,7 @@ export class LessonMockupService {
 
   add(lesson: Lesson): Observable<Lesson[]> {
     lesson.id = Date.now() + Math.floor(Math.random() * 100);
-    lesson.courseId = this.getRandomCourseId();  // Asignamos courseId al azar
+    lesson.courseId = this.getRandomCourseId();  // Asignamos courseId al azar por falta de DB.
     this.lessonList.push(lesson);
     this.lessonsSubject.next(this.lessonList);
     return of([...this.lessonList]);
